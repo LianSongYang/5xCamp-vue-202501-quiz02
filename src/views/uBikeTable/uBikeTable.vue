@@ -10,6 +10,7 @@ import { ref, computed, watch } from 'vue';
 
 import SearchText from './components/Search.vue';
 import uBikeTable from './components/uBikeTable.vue';
+import Pagination from './components/Pagination.vue';
 
 
 // 欄位說明:
