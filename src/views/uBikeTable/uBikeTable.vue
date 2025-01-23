@@ -1,9 +1,15 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
-// 修改這份 YouBike 即時資訊表，並加上
-// 1. 站點名稱搜尋
-// 2. 目前可用車輛 / 總停車格 的排序功能
-// 3. 加入分頁功能，每頁 20 筆資料
+
+// 修改這份 YouBike 即時資訊表：
+// 1. 將搜尋的部分拆出來變成子元件 `uBikeTable/components/search.vue`
+// 2. 將表格的部分拆出來變成子元件 `uBikeTable/components/uBikeTable.vue`
+// 3. 將分頁的部分拆出來變成子元件 `uBikeTable/components/pagination.vue`
+// 4. 再將它們組合起來
+
+
+import SearchText from './components/Search.vue';
+
 
 // 欄位說明:
 // https://data.taipei/dataset/detail?id=c6bc8aed-557d-41d5-bfb1-8da24f78f2fb
@@ -121,9 +127,10 @@ const keywordsHighlight = (text, keyword) => {
 
 <template>
   <div class="app">
-    <p class="mb-3">
-      站點名稱搜尋: <input class="border" type="text" v-model="searchText">
-    </p>
+
+    <!-- SearchText 元件, 用 defineModel 示範 -->
+    <SearchText v-model:searchText="searchText"/>
+
 
     <table class="table table-striped">
       <thead>
